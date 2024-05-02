@@ -1,6 +1,7 @@
+from asyncio.windows_events import NULL
 import os
 file='note_dir.txt'
-path = 'c://Users//Пользователь//Desktop//GeekBR//PHP//phpLesson//OpenServer//domains//notes_PY//notes_PY_prog//bd//'
+path = 'd://Users//Пользователь//Desktop//GeekBR//SERVER//OSPanel//domains//notes_PY//notes_PY_prog//bd//'
 absolute_path = os.path.abspath(f'{path}{file}')
 cache_list = []
 SEPARATOR=';'
@@ -18,10 +19,16 @@ def to_file(cache_list, flag):
       data.write(f'{SEPARATOR.join(i)}\n')
   data.close()
 
-def search(cache_list,word):
-  item_true = []
-  for i in range(len(cache_list)):
+def search(cache_list,word,flag='arr'):
+  if(flag=='index'):
+    item = 'NULL'
+    for i in range(len(cache_list)):
       if word.lower() in ' '.join(cache_list[i]).lower():
-        item_true.append(cache_list[i])
-        print(item_true)
-  return item_true
+        item=i
+  elif(flag=='arr'):
+    item = []
+    for i in range(len(cache_list)):
+      if word.lower() in ' '.join(cache_list[i]).lower():
+        item.append(cache_list[i])
+        
+  return item

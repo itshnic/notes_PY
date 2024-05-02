@@ -1,3 +1,4 @@
+import random
 import text
 import datetime
 
@@ -22,7 +23,10 @@ def checkNull(item):
 def add_user(list_request: list, text_request: str) ->list:
   new_note=[]
   for note_info in list_request:
-    if (note_info.lower() !='дата создания'):new_note.append(checkNull(input(f'{text_request} {note_info.lower()}: ')))
+    if(note_info.lower() =='id'):
+      new_note.append(str(random.randint(0,10000)))
+    elif(note_info.lower() !='дата создания' ):
+      new_note.append(checkNull(input(f'{text_request} {note_info.lower()}: ')))
     else: new_note.append(datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S"))
   return new_note
 
